@@ -1,5 +1,3 @@
-<!-- 1.Configura el componente 'InputPassword' para que se muestre la contraseña introducida en el input haciendo click en el botón "show password". -->
-
 <script setup>
 import { ref, computed } from 'vue';
 
