@@ -1,19 +1,36 @@
+<!-- 1.Configura el componente 'InputPassword' para que se muestre la contraseña introducida en el input haciendo click en el botón "show password". -->
+
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+
+const isPasswordVisible = ref(false);
+
+const inputType = computed(() => {
+    return isPasswordVisible.value ? "text" : "password";
+});
+
+const buttonText = computed(() => {
+    return isPasswordVisible.value ? "Hide Password" : "Show Password";
+});
+
+function showPassword() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+}
 
 </script>
 
 <template>
     <div class="container text-center input-password">
         <h1 class="my-3">Exercise Input Password</h1>
-        <input type="password" name="" id="password" class="form-control">
+        <input :type="inputType" name="" id="password" class="form-control">
         <div class="d-block">
-            <span id="show-password" class="mt-2 btn btn-primary">Show Password</span>
+            <span id="show-password" class="mt-2 btn btn-primary" @click="showPassword()">{{ buttonText }}</span>
         </div>
     </div>
 </template>
 
 <style lang="css" scoped>
+
     #show-password:hover {
         cursor: pointer;
         user-select: none;
